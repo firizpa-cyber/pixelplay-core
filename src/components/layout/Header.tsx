@@ -74,8 +74,8 @@ export function Header() {
         <div className="flex items-center justify-between h-[72px]">
           {/* Left section */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center">
-              <img src={logo} alt="Lumiere" className="h-8 w-auto" />
+            <Link to="/" className="flex items-center flex-shrink-0">
+              <img src={logo} alt="Lumiere" className="h-8 w-auto min-w-[120px]" />
             </Link>
             
             <button 
