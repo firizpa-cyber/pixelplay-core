@@ -31,17 +31,17 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
     isScrollingRef.current = true;
     scrollStartRef.current = e.pageX - scrollRef.current.offsetLeft;
     scrollLeftRef.current = scrollRef.current.scrollLeft;
-    setRender(prev => !prev);
+    setIsScrolling(true);
   };
 
   const handleMouseLeave = () => {
     isScrollingRef.current = false;
-    setRender(prev => !prev);
+    setIsScrolling(false);
   };
 
   const handleMouseUp = () => {
     isScrollingRef.current = false;
-    setRender(prev => !prev);
+    setIsScrolling(false);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
