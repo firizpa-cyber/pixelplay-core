@@ -71,42 +71,43 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-strong">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-[72px]">
-          {/* Left section */}
-          <div className="flex items-center gap-6">
+      <div className="w-full px-3 sm:px-4">
+        <div className="flex items-center justify-between h-[72px] gap-2 sm:gap-4">
+          {/* Left section - Logo & Catalog */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <Link to="/" className="flex items-center flex-shrink-0">
-              <img src={logo} alt="Lumiere" className="h-8 w-auto min-w-[120px]" />
+              <img src={logo} alt="Lumiere" className="h-7 sm:h-8 w-auto" />
             </Link>
-            
-            <button 
+
+            <button
               onClick={isCatalogOpen ? closeCatalog : openCatalog}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-full transition-colors",
-                isCatalogOpen 
-                  ? "bg-muted text-foreground" 
+                "flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full transition-colors flex-shrink-0",
+                isCatalogOpen
+                  ? "bg-muted text-foreground"
                   : "text-foreground/80 hover:text-foreground hover:bg-muted/50"
               )}
             >
-              {isCatalogOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              <span className="text-sm font-medium hidden sm:inline">Каталог</span>
+              {isCatalogOpen ? <X className="w-4 sm:w-5 h-4 sm:h-5" /> : <Menu className="w-4 sm:w-5 h-4 sm:h-5" />}
+              <span className="text-xs sm:text-sm font-medium hidden sm:inline">Каталог</span>
             </button>
-            
-            <form onSubmit={handleSearch} className="relative hidden md:flex items-center">
-              <Search className="absolute left-3 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Поиск"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => navigate("/search")}
-                className="pl-9 w-48 lg:w-64 bg-muted/50 border-border/50 focus:bg-muted"
-              />
-            </form>
           </div>
 
-          {/* Center navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Center - Search (hidden on mobile) */}
+          <form onSubmit={handleSearch} className="relative hidden sm:flex items-center flex-1 max-w-xs lg:max-w-sm">
+            <Search className="absolute left-3 w-3.5 h-3.5 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Поиск"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => navigate("/search")}
+              className="pl-9 w-full text-sm bg-muted/50 border-border/50 focus:bg-muted"
+            />
+          </form>
+
+          {/* Desktop navigation (hidden on mobile/tablet) */}
+          <nav className="hidden lg:flex items-center gap-0.5 flex-shrink-0">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               return (
@@ -129,31 +130,32 @@ export function Header() {
             })}
           </nav>
 
-          {/* Right section */}
-          <div className="flex items-center gap-3">
-            <Link to="/pricing">
+          {/* Right section - Promo, Login, Search icon */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <Link to="/pricing" className="hidden sm:block">
               <Button
                 variant="default"
-                className="bg-gradient-primary hover:opacity-90 text-sm font-semibold px-4"
+                className="bg-gradient-primary hover:opacity-90 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 h-auto"
               >
-                15 смн за 30 дней
+                <span className="hidden md:inline">15 смн за 30 дней</span>
+                <span className="md:hidden">15 смн</span>
               </Button>
             </Link>
-            
+
             <Link to="/auth">
-              <Button 
-                variant="outline" 
-                className="border-border/50 hover:bg-muted/50"
+              <Button
+                variant="outline"
+                className="border-border/50 hover:bg-muted/50 text-xs sm:text-sm px-2.5 sm:px-3 py-1.5 sm:py-2 h-auto"
               >
                 Войти
               </Button>
             </Link>
-            
-            <button 
+
+            <button
               onClick={() => navigate("/search")}
-              className="md:hidden p-2 text-foreground/80 hover:text-foreground"
+              className="sm:hidden p-2 text-foreground/80 hover:text-foreground flex-shrink-0"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4" />
             </button>
           </div>
         </div>
