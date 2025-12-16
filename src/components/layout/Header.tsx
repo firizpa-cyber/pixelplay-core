@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, Search, Home, Smile, Gift, Trophy, Grid3X3, Tv, User } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, Search, Home, Smile, Gift, Trophy, Grid3X3, Tv, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-lumiere.png";
@@ -17,7 +17,26 @@ const navItems = [
 
 export function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const isCatalogOpen = location.pathname === "/catalog";
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);
+    }
+  };
+
+  const openCatalog = () => {
+    navigate("/catalog");
+  };
+
+  const closeCatalog = () => {
+    navigate(-1);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-strong">
@@ -29,19 +48,30 @@ export function Header() {
               <img src={logo} alt="Lumiere" className="h-8 w-auto" />
             </Link>
             
-            <button className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors">
-              <Menu className="w-5 h-5" />
+            <button 
+              onClick={isCatalogOpen ? closeCatalog : openCatalog}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-full transition-colors",
+                isCatalogOpen 
+                  ? "bg-muted text-foreground" 
+                  : "text-foreground/80 hover:text-foreground hover:bg-muted/50"
+              )}
+            >
+              {isCatalogOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               <span className="text-sm font-medium hidden sm:inline">Каталог</span>
             </button>
             
-            <div className="relative hidden md:flex items-center">
+            <form onSubmit={handleSearch} className="relative hidden md:flex items-center">
               <Search className="absolute left-3 w-4 h-4 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Поиск"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => navigate("/search")}
                 className="pl-9 w-48 lg:w-64 bg-muted/50 border-border/50 focus:bg-muted"
               />
-            </div>
+            </form>
           </div>
 
           {/* Center navigation */}
@@ -82,7 +112,10 @@ export function Header() {
               </Button>
             </Link>
             
-            <button className="md:hidden p-2 text-foreground/80 hover:text-foreground">
+            <button 
+              onClick={() => navigate("/search")}
+              className="md:hidden p-2 text-foreground/80 hover:text-foreground"
+            >
               <Search className="w-5 h-5" />
             </button>
           </div>
