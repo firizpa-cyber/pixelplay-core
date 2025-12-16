@@ -183,19 +183,37 @@
   
   /* Nav link styles */
   .nav-link {
-    @apply flex flex-col items-center gap-1 px-3 py-2 text-muted-foreground transition-colors hover:text-foreground;
+    @apply flex flex-col items-center justify-center gap-1.5 px-2 py-2.5 text-muted-foreground transition-colors hover:text-foreground;
   }
-  
+
+  @media (max-width: 640px) {
+    .nav-link {
+      @apply px-2.5 py-2 gap-2;
+    }
+  }
+
   .nav-link.active {
     @apply text-primary;
   }
-  
+
   .nav-link-icon {
-    @apply w-5 h-5;
+    @apply w-6 h-6 flex-shrink-0;
   }
-  
+
+  @media (max-width: 640px) {
+    .nav-link-icon {
+      @apply w-7 h-7;
+    }
+  }
+
   .nav-link-label {
-    @apply text-xs font-medium;
+    @apply text-xs font-medium leading-tight whitespace-nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .nav-link-label {
+      @apply text-[0.65rem] leading-tight;
+    }
   }
   
   /* Collection card gradients */
