@@ -140,7 +140,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-border/30 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 Lumiere. Все права защищены.
+            © 2025 Lumiere. Все права защищены.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link to="/terms" className="hover:text-foreground transition-colors">
