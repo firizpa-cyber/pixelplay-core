@@ -184,41 +184,49 @@ export function Header() {
             );
           })()}
 
-          {/* More menu popover */}
-          <Popover>
-            <PopoverTrigger asChild>
+          {/* More menu sheet (iOS style bottom drawer) */}
+          <Sheet>
+            <SheetTrigger asChild>
               <button className="nav-link flex-shrink-0 hover:text-foreground">
                 <MoreHorizontal className="nav-link-icon" />
                 <span className="nav-link-label">Еще</span>
               </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-48 p-2" align="start">
-              <div className="space-y-1">
-                {navItems.slice(1).map((item) => {
-                  const isActive = location.pathname === item.href;
-                  return (
-                    <Link
-                      key={item.href}
-                      to={item.href}
-                      className={cn(
-                        "flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-sm",
-                        isActive
-                          ? "bg-primary/10 text-primary"
-                          : "text-foreground/80 hover:bg-muted hover:text-foreground"
-                      )}
-                    >
-                      <img
-                        src={isActive ? item.iconActive : item.iconNormal}
-                        alt={item.label}
-                        className="w-5 h-5"
-                      />
-                      <span>{item.label}</span>
-                    </Link>
-                  );
-                })}
+            </SheetTrigger>
+            <SheetContent side="bottom" className="max-h-[60vh] p-0 flex flex-col rounded-t-2xl">
+              {/* Handle bar for iOS style */}
+              <div className="flex justify-center pt-3 pb-2">
+                <div className="w-12 h-1 bg-muted-foreground/30 rounded-full" />
               </div>
-            </PopoverContent>
-          </Popover>
+
+              {/* Menu items */}
+              <div className="overflow-y-auto flex-1">
+                <div className="space-y-1 px-4 pb-4">
+                  {navItems.slice(1).map((item) => {
+                    const isActive = location.pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className={cn(
+                          "flex items-center gap-4 px-4 py-3 rounded-lg transition-colors",
+                          isActive
+                            ? "bg-primary/10 text-primary"
+                            : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                        )}
+                      >
+                        <img
+                          src={isActive ? item.iconActive : item.iconNormal}
+                          alt={item.label}
+                          className="w-6 h-6 flex-shrink-0"
+                        />
+                        <span className="text-base font-medium">{item.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
     </header>
