@@ -111,7 +111,7 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
           ref={scrollRef}
           className={cn(
             "content-row -mx-4 px-4",
-            isScrolling ? "cursor-grabbing" : "cursor-grab"
+            isScrollingRef.current ? "cursor-grabbing" : "cursor-grab"
           )}
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeave}
