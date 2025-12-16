@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search, X, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@/assets/logo-lumiere.png";
 import { cn } from "@/lib/utils";
 
@@ -159,28 +160,65 @@ export function Header() {
       </div>
       
       {/* Mobile navigation */}
-      <nav className="lg:hidden border-t border-border/30 overflow-x-auto scrollbar-hide bg-background/50">
-        <div className="flex items-center justify-start px-2 py-3 gap-0.5 min-w-min">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.href;
+      <nav className="lg:hidden border-t border-border/30 bg-background/50">
+        <div className="flex items-center justify-start px-2 py-3 gap-2">
+          {/* Show only Главная on mobile */}
+          {navItems.length > 0 && (() => {
+            const homeItem = navItems[0];
+            const isActive = location.pathname === homeItem.href;
             return (
               <Link
-                key={item.href}
-                to={item.href}
+                to={homeItem.href}
                 className={cn(
                   "nav-link flex-shrink-0",
                   isActive && "active"
                 )}
               >
                 <img
-                  src={isActive ? item.iconActive : item.iconNormal}
-                  alt={item.label}
+                  src={isActive ? homeItem.iconActive : homeItem.iconNormal}
+                  alt={homeItem.label}
                   className="nav-link-icon"
                 />
-                <span className="nav-link-label">{item.label}</span>
+                <span className="nav-link-label">{homeItem.label}</span>
               </Link>
             );
-          })}
+          })()}
+
+          {/* More menu popover */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="nav-link flex-shrink-0 hover:text-foreground">
+                <MoreHorizontal className="nav-link-icon" />
+                <span className="nav-link-label">Еще</span>
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-48 p-2" align="start">
+              <div className="space-y-1">
+                {navItems.slice(1).map((item) => {
+                  const isActive = location.pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-sm",
+                        isActive
+                          ? "bg-primary/10 text-primary"
+                          : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                      )}
+                    >
+                      <img
+                        src={isActive ? item.iconActive : item.iconNormal}
+                        alt={item.label}
+                        className="w-5 h-5"
+                      />
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </nav>
     </header>
