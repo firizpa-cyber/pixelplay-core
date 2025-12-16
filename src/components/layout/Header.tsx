@@ -130,12 +130,14 @@ export function Header() {
 
           {/* Right section */}
           <div className="flex items-center gap-3">
-            <Button 
-              variant="default"
-              className="bg-gradient-primary hover:opacity-90 text-sm font-semibold px-4"
-            >
-              15 сом за 30 дней
-            </Button>
+            <Link to="/pricing">
+              <Button
+                variant="default"
+                className="bg-gradient-primary hover:opacity-90 text-sm font-semibold px-4"
+              >
+                15 смн за 30 дней
+              </Button>
+            </Link>
             
             <Link to="/auth">
               <Button 
