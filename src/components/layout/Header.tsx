@@ -159,8 +159,8 @@ export function Header() {
       </div>
       
       {/* Mobile navigation */}
-      <nav className="lg:hidden border-t border-border/30 overflow-x-auto scrollbar-hide">
-        <div className="flex items-center px-4 py-2 gap-1">
+      <nav className="lg:hidden border-t border-border/30 overflow-x-auto scrollbar-hide bg-background/50">
+        <div className="flex items-center justify-start px-2 py-3 gap-0.5 min-w-min">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -175,9 +175,9 @@ export function Header() {
                 <img
                   src={isActive ? item.iconActive : item.iconNormal}
                   alt={item.label}
-                  className="nav-link-icon w-5 h-5"
+                  className="nav-link-icon"
                 />
-                <span className="nav-link-label whitespace-nowrap">{item.label}</span>
+                <span className="nav-link-label">{item.label}</span>
               </Link>
             );
           })}
