@@ -170,7 +170,11 @@ export function Header() {
                   isActive && "active"
                 )}
               >
-                <item.icon className="nav-link-icon" />
+                <img
+                  src={isActive ? item.iconActive : item.iconNormal}
+                  alt={item.label}
+                  className="nav-link-icon w-5 h-5"
+                />
                 <span className="nav-link-label whitespace-nowrap">{item.label}</span>
               </Link>
             );
