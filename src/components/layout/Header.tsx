@@ -107,7 +107,7 @@ export function Header() {
 
           {/* Desktop navigation (hidden on mobile/tablet) */}
           <nav className="hidden lg:flex items-center gap-0.5 flex-shrink-0">
-            {navItems.map((item) => {
+            {desktopNavItems.map((item) => {
               const isActive = location.pathname === item.href;
               return (
                 <Link
