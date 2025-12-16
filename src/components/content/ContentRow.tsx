@@ -57,6 +57,7 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!isScrolling || !scrollRef.current) return;
+    e.preventDefault();
     const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
     const walk = (x - scrollStart) * 1.5;
     scrollRef.current.scrollLeft = scrollLeft - walk;
