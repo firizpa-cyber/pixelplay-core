@@ -144,22 +144,6 @@ export function HeroCarousel({ slides, autoPlayInterval = 6000 }: HeroCarouselPr
         </div>
       </div>
 
-      {/* Navigation arrows */}
-      <button
-        onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-background/50 backdrop-blur flex items-center justify-center text-foreground/80 hover:text-foreground hover:bg-background/70 transition-all"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      
-      <button
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-background/50 backdrop-blur flex items-center justify-center text-foreground/80 hover:text-foreground hover:bg-background/70 transition-all"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
 
       {/* Side previews */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden xl:flex flex-col gap-3">
