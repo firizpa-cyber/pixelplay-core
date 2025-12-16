@@ -141,7 +141,7 @@ export function Header() {
               </Button>
             </Link>
 
-            <Link to="/auth">
+            <Link to="/auth" className="hidden sm:block">
               <Button
                 variant="outline"
                 className="border-border/50 hover:bg-muted/50 text-xs sm:text-sm px-2.5 sm:px-3 py-1.5 sm:py-2 h-auto"
