@@ -104,7 +104,17 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
         {/* Content */}
         <div
           ref={scrollRef}
-          className="content-row -mx-4 px-4"
+          className={cn(
+            "content-row -mx-4 px-4",
+            isScrolling ? "cursor-grabbing" : "cursor-grab"
+          )}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {children}
         </div>
