@@ -92,8 +92,8 @@ export function Header() {
             </button>
           </div>
 
-          {/* Center - Search (hidden on mobile) */}
-          <form onSubmit={handleSearch} className="relative hidden sm:flex items-center flex-1 max-w-xs lg:max-w-sm">
+          {/* Center - Search (full width on mobile, limited on larger) */}
+          <form onSubmit={handleSearch} className="relative flex items-center flex-1 max-w-xs sm:max-w-sm lg:max-w-sm">
             <Search className="absolute left-3 w-3.5 h-3.5 text-muted-foreground" />
             <Input
               type="text"
@@ -101,7 +101,7 @@ export function Header() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => navigate("/search")}
-              className="pl-9 w-full text-sm bg-muted/50 border-border/50 focus:bg-muted"
+              className="pl-9 w-full text-xs sm:text-sm bg-muted/50 border-border/50 focus:bg-muted"
             />
           </form>
 
