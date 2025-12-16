@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-lumiere.png";
 import { cn } from "@/lib/utils";
 
-const navItems = [
+const desktopNavItems = [
   {
     label: "Главная",
     href: "/",
