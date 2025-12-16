@@ -12,9 +12,10 @@ interface ContentRowProps {
 
 export function ContentRow({ title, children, className, showAllLink }: ContentRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [scrollStart, setScrollStart] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const isScrollingRef = useRef(false);
+  const scrollStartRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const [, setRender] = useState(false);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -27,44 +28,47 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
-    setIsScrolling(true);
-    setScrollStart(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
+    isScrollingRef.current = true;
+    scrollStartRef.current = e.pageX - scrollRef.current.offsetLeft;
+    scrollLeftRef.current = scrollRef.current.scrollLeft;
+    setRender(prev => !prev);
   };
 
   const handleMouseLeave = () => {
-    setIsScrolling(false);
+    isScrollingRef.current = false;
+    setRender(prev => !prev);
   };
 
   const handleMouseUp = () => {
-    setIsScrolling(false);
+    isScrollingRef.current = false;
+    setRender(prev => !prev);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isScrolling || !scrollRef.current) return;
+    if (!isScrollingRef.current || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - scrollStart) * 2;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    const walk = (x - scrollStartRef.current) * 2;
+    scrollRef.current.scrollLeft = scrollLeftRef.current - walk;
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
-    setIsScrolling(true);
-    setScrollStart(e.touches[0].pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
+    isScrollingRef.current = true;
+    scrollStartRef.current = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    scrollLeftRef.current = scrollRef.current.scrollLeft;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isScrolling || !scrollRef.current) return;
+    if (!isScrollingRef.current || !scrollRef.current) return;
     e.preventDefault();
     const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = (x - scrollStart) * 1.5;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    const walk = (x - scrollStartRef.current) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeftRef.current - walk;
   };
 
   const handleTouchEnd = () => {
-    setIsScrolling(false);
+    isScrollingRef.current = false;
   };
 
   return (
