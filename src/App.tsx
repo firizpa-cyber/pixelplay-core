@@ -9,6 +9,8 @@ import FreePage from "./pages/FreePage";
 import SportsPage from "./pages/SportsPage";
 import CollectionsPage from "./pages/CollectionsPage";
 import TVChannelsPage from "./pages/TVChannelsPage";
+import CatalogPage from "./pages/CatalogPage";
+import SearchPage from "./pages/SearchPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import PlayerPage from "./pages/PlayerPage";
 import AuthPage from "./pages/AuthPage";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/sports" element={<SportsPage />} />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/tv" element={<TVChannelsPage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/movie/:id" element={<MovieDetailPage />} />
           <Route path="/watch/:id" element={<PlayerPage />} />
           <Route path="/auth" element={<AuthPage />} />
