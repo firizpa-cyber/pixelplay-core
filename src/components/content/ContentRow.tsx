@@ -15,7 +15,7 @@ export function ContentRow({ title, children, className, showAllLink }: ContentR
   const isScrollingRef = useRef(false);
   const scrollStartRef = useRef(0);
   const scrollLeftRef = useRef(0);
-  const [, setRender] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
