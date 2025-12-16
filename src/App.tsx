@@ -4,6 +4,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import KidsPage from "./pages/KidsPage";
+import FreePage from "./pages/FreePage";
+import SportsPage from "./pages/SportsPage";
+import CollectionsPage from "./pages/CollectionsPage";
+import TVChannelsPage from "./pages/TVChannelsPage";
+import MovieDetailPage from "./pages/MovieDetailPage";
+import PlayerPage from "./pages/PlayerPage";
+import AuthPage from "./pages/AuthPage";
+import PaymentPage from "./pages/PaymentPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,7 +25,15 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/kids" element={<KidsPage />} />
+          <Route path="/free" element={<FreePage />} />
+          <Route path="/sports" element={<SportsPage />} />
+          <Route path="/collections" element={<CollectionsPage />} />
+          <Route path="/tv" element={<TVChannelsPage />} />
+          <Route path="/movie/:id" element={<MovieDetailPage />} />
+          <Route path="/watch/:id" element={<PlayerPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
