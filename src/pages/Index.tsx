@@ -1,13 +1,79 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Layout } from "@/components/layout/Layout";
+import { HeroCarousel } from "@/components/hero/HeroCarousel";
+import { ContentRow } from "@/components/content/ContentRow";
+import { MovieCard } from "@/components/cards/MovieCard";
+import { heroSlides, popularMovies, freeMovies } from "@/data/movies";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Layout>
+      {/* SEO */}
+      <title>Lumiere - Смотрите фильмы и сериалы онлайн</title>
+      <meta name="description" content="Смотрите фильмы, сериалы, мультфильмы и ТВ-каналы онлайн в отличном качестве на любых устройствах." />
+      
+      {/* Hero carousel */}
+      <HeroCarousel slides={heroSlides} />
+      
+      {/* Popular for you */}
+      <ContentRow title="Популярное для вас" showAllLink="/popular">
+        {popularMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            image={movie.image}
+            rating={movie.rating}
+            type={movie.type}
+            year={movie.year}
+          />
+        ))}
+      </ContentRow>
+      
+      {/* Free movies */}
+      <ContentRow title="Бесплатные" showAllLink="/free">
+        {freeMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            image={movie.image}
+            rating={movie.rating}
+            type={movie.type}
+            year={movie.year}
+          />
+        ))}
+      </ContentRow>
+      
+      {/* More popular */}
+      <ContentRow title="Сериалы недели">
+        {[...popularMovies].reverse().map((movie) => (
+          <MovieCard
+            key={`week-${movie.id}`}
+            id={movie.id}
+            title={movie.title}
+            image={movie.image}
+            rating={movie.rating}
+            type="series"
+            year={movie.year}
+          />
+        ))}
+      </ContentRow>
+      
+      {/* New releases */}
+      <ContentRow title="Новинки">
+        {[...freeMovies, ...popularMovies.slice(0, 2)].map((movie, index) => (
+          <MovieCard
+            key={`new-${movie.id}-${index}`}
+            id={movie.id}
+            title={movie.title}
+            image={movie.image}
+            rating={movie.rating}
+            type={index % 2 === 0 ? "premiere" : movie.type}
+            year={movie.year}
+          />
+        ))}
+      </ContentRow>
+    </Layout>
   );
 };
 
