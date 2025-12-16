@@ -1,18 +1,48 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, Search, Home, Smile, Gift, Trophy, Grid3X3, Tv, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-lumiere.png";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { icon: Home, label: "Главная", href: "/" },
-  { icon: Smile, label: "Детям", href: "/kids" },
-  { icon: Gift, label: "Бесплатно", href: "/free" },
-  { icon: Trophy, label: "Спорт", href: "/sports" },
-  { icon: Grid3X3, label: "Коллекции", href: "/collections" },
-  { icon: Tv, label: "ТВ каналы", href: "/tv" },
+  {
+    label: "Главная",
+    href: "/",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2Fb0b9026a99054e3dbf3449e57d54d588?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F891742d1d96344a3bedb37ce7ccb60d8?format=webp&width=800",
+  },
+  {
+    label: "Детям",
+    href: "/kids",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F57da6f0e10a24080a6140e62470461ea?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F42037a02cc254fd0abc8aade24d05b53?format=webp&width=800",
+  },
+  {
+    label: "Бесплатно",
+    href: "/free",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2Fdc3a10171cdb49188396331cd6cce8ad?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F588c99cf62c54bfa91e0bec8a534b390?format=webp&width=800",
+  },
+  {
+    label: "Спорт",
+    href: "/sports",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2Fadd46c706e974358b4e2e70c21ad42ed?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F8e618fb6e7d34d61bc9223b386f487c5?format=webp&width=800",
+  },
+  {
+    label: "Коллекции",
+    href: "/collections",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F6f2fb373133c4c9498c1e92be38fe4f0?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F5e3f0868ba1a4ce7bad23cc392765e83?format=webp&width=800",
+  },
+  {
+    label: "ТВ каналы",
+    href: "/tv",
+    iconNormal: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2Fc0f701fa7ce644508a74fefc419cc679?format=webp&width=800",
+    iconActive: "https://cdn.builder.io/api/v1/image/assets%2F0d77b54bf9a14a4f80a323f36080e67b%2F1ece459a70494a90b606ef033acd44ba?format=webp&width=800",
+  },
 ];
 
 export function Header() {
@@ -87,7 +117,11 @@ export function Header() {
                     isActive && "active"
                   )}
                 >
-                  <item.icon className="nav-link-icon" />
+                  <img
+                    src={isActive ? item.iconActive : item.iconNormal}
+                    alt={item.label}
+                    className="nav-link-icon w-5 h-5"
+                  />
                   <span className="nav-link-label">{item.label}</span>
                 </Link>
               );
@@ -96,12 +130,14 @@ export function Header() {
 
           {/* Right section */}
           <div className="flex items-center gap-3">
-            <Button 
-              variant="default"
-              className="bg-gradient-primary hover:opacity-90 text-sm font-semibold px-4"
-            >
-              15 сом за 30 дней
-            </Button>
+            <Link to="/pricing">
+              <Button
+                variant="default"
+                className="bg-gradient-primary hover:opacity-90 text-sm font-semibold px-4"
+              >
+                15 смн за 30 дней
+              </Button>
+            </Link>
             
             <Link to="/auth">
               <Button 
@@ -136,7 +172,11 @@ export function Header() {
                   isActive && "active"
                 )}
               >
-                <item.icon className="nav-link-icon" />
+                <img
+                  src={isActive ? item.iconActive : item.iconNormal}
+                  alt={item.label}
+                  className="nav-link-icon w-5 h-5"
+                />
                 <span className="nav-link-label whitespace-nowrap">{item.label}</span>
               </Link>
             );

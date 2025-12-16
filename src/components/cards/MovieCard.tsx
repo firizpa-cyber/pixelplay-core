@@ -36,12 +36,12 @@ export function MovieCard({
     <Link
       to={`/movie/${id}`}
       className={cn(
-        "group relative flex-shrink-0 w-[180px] sm:w-[200px] md:w-[220px] rounded-xl overflow-hidden card-hover",
+        "group relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] rounded-xl overflow-hidden card-hover",
         className
       )}
     >
       {/* Image */}
-      <div className="aspect-[2/3] relative overflow-hidden rounded-xl">
+      <div className="aspect-video relative overflow-hidden rounded-xl">
         <img
           src={image}
           alt={title}

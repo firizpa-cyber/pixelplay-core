@@ -122,17 +122,17 @@ export function Footer() {
         {/* Contact info */}
         <div className="mt-10 pt-8 border-t border-border/30">
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-            <a href="tel:+996123456789" className="flex items-center gap-2 hover:text-foreground transition-colors">
+            <a href="tel:9911" className="flex items-center gap-2 hover:text-foreground transition-colors">
               <Phone className="w-4 h-4" />
-              +996 123 456 789
+              99-11
             </a>
-            <a href="mailto:support@lumiere.kg" className="flex items-center gap-2 hover:text-foreground transition-colors">
+            <a href="mailto:ant@lumier.tj" className="flex items-center gap-2 hover:text-foreground transition-colors">
               <Mail className="w-4 h-4" />
-              support@lumiere.kg
+              ant@lumier.tj
             </a>
             <span className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              Бишкек, Кыргызстан
+              Худжанд, ул. Сирдаря 1
             </span>
           </div>
         </div>
@@ -140,7 +140,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-border/30 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 Lumiere. Все права защищены.
+            © 2025 Lumiere. Все права защищены.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link to="/terms" className="hover:text-foreground transition-colors">
